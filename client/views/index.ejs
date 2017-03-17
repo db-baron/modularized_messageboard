@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>EJS Page of Modularized Message Board</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>  </head>
+    <link rel="stylesheet" type="text/css" href="/main.css">
+  <body>
+    <h2>Message Board</h2>
+    <form action="/users" method="post">
+        Name: <input type="text" name="name"><br>
+        User: <input type="text" name="user"><br>
+        <input type="submit" value="Submit"><br>
+    </form>
+    <hr>
+    <% for(var user of users) { %>
+        <h4>Name: <%= user.name %></h4>
+        <h4>Age: <%= user.age %></h4>
+        <h4>Message: <%= user.messages %></h4>
+
+        <form action="/messages/<%= user.id %>" method="post">
+            Name: <input type="text" name="name"><br>
+            Message: <input type="text" name="message"><br>
+            <input type="submit" value="Make Message"><br>
+        </form>
+        <!-- for every message of the messages array of my user -->
+        <% for(var message of user.messages) { %>
+            <p>Name: <%= message.name %></p>
+            <p>Message: <%= message.message %></p>
+        <% } %>
+        <hr>
+    <% } %>
+  </body>
+</html>
